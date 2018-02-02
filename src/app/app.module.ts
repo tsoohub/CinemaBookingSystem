@@ -4,15 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { myRoutes } from './app.routes';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    SignupComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    myRoutes
   ],
   providers: [],
   bootstrap: [AppComponent]
