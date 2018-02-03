@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { TicketOrderComponent } from './ticket-order/ticket-order.component';
+import { myRoutes } from './app.routes';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -14,9 +16,12 @@ import { TicketOrderComponent } from './ticket-order/ticket-order.component';
     WelcomeComponent,
     LoginComponent,
     TicketOrderComponent
+    WelcomeComponent,
+    SignupComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    myRoutes
   ],
   providers: [],
   bootstrap: [AppComponent]
