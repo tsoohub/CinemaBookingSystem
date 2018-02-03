@@ -1,3 +1,28 @@
+<div class="main">
+  <div class="contact-content">
+    <div class="top-header span_top">
+      <div class="clearfix"></div>
+    </div>
+    <div class="main-contact">
+      <h3 class="head">LOGIN</h3>
+      <div class="contact-form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+          <div class="col-md-12 contact-left">
+            <input type="text" [formControl]="loginForm.controls['username']" name="username" placeholder="username" required="">
+            <input type="text" placeholder="password" [formControl]="loginForm.controls['password']" name="password" required="">
+            <input type="submit" [disabled]="!loginForm.valid" value="Login">
+          </div>
+
+          <div class="clearfix"></div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- 
 <div>
   <p>Login</p>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -15,4 +40,5 @@
         <button type="button" name="signup">Sign Up</button>
       </div>
   </form>
-</div>
+</div> 
+-->

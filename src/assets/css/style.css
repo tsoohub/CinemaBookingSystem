@@ -24,6 +24,7 @@ input[type="button"],input[type="submit"]{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
@@ -177,6 +178,12 @@ i.video1 {
 }
 .menu ul li a:hover {
 	background: #dfb636;
+}
+i.login {
+	width:60px;
+	height:60px;
+	background: url('../images/login.png') no-repeat 0px 0px;
+	display:block;
 }
 i.home {
 	width:60px;
@@ -845,6 +852,13 @@ a.b-home:hover{
 	outline: none;
 	font-weight:400;
 }
+
+.main-contact form  input[type="submit"]:disabled{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
 .main-contact form textarea {
 	resize:none;
 	height:201px;
@@ -865,6 +879,11 @@ a.b-home:hover{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+.main-contact form input[type="submit"]:hover{
+	background:#fff;
+	color:#000;
+}
+
 .main-contact form input[type="submit"]:hover{
 	background:#fff;
 	color:#000;
