@@ -15,6 +15,7 @@ const MY_ROUTES: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'ticket', component: TicketOrderComponent,canActivate:[AuthGuard]},
     {path: 'unauthorized', component: UnauthorizedComponent},
+    {path: 'logout', redirectTo: '/logout' },
     {path: '**', redirectTo: '/' },
     
 ];

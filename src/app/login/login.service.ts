@@ -10,16 +10,16 @@ export class LoginService {
   }
   login(credentials) {
     this.http.post('http://localhost:3000/login', credentials).subscribe(
-      res => {
-        res=>res.json();
-        res=>localStorage.setItem('id_token',res);
-        error=>console.log(error);
-      });
+      function (res) {
+        res => res.json();
+        localStorage.setItem('id_token', JSON.stringify(res));
+      })
   }
-  loggedIn(){
-      return tokenNotExpired();
+  loggedIn() {
+    // console.log('token_Id' + localStorage.getItem('id_token'));
+    return tokenNotExpired('id_token');
   }
-  logout(){
+  logout() {
     localStorage.removeItem('id_token');
   }
 

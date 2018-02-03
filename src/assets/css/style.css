@@ -185,6 +185,13 @@ i.login {
 	background: url('../images/login.png') no-repeat 0px 0px;
 	display:block;
 }
+
+i.logout {
+	width:60px;
+	height:60px;
+	background: url('../images/logout.png') no-repeat 0px 0px;
+	display:block;
+}
 i.home {
 	width:60px;
 	height:60px;
