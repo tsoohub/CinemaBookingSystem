@@ -13,8 +13,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthGuard } from './guard/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupServiceService } from './services/signup-service.service';
-
-// import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -23,8 +22,8 @@ import { SignupServiceService } from './services/signup-service.service';
     WelcomeComponent,
     LoginComponent,
     TicketOrderComponent,
-    UnauthorizedComponent
-    // SignupComponent
+    UnauthorizedComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

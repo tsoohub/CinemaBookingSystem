@@ -13,8 +13,6 @@ mongoose.connect('mongodb://localhost/cinema', { promiseLibrary: require('bluebi
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -24,15 +22,7 @@ app.use('/books', express.static(path.join(__dirname, 'dist')));
 app.use('/book', book);
 app.use('/login', login);
 app.use('/user', user);
-
-// app.use(function(req, res, next) {
-//   req.db=db;
-//   next();
-// });   
-// app.engine('html', require('ejs').renderFile);
-// app.set('view engine', 'html');
 app.post('/signup', function(req, res) {
-
   console.log('Request: '+req.body);
 });
 
