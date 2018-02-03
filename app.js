@@ -5,7 +5,16 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var book = require('./routes/book');
+var user = require('./routes/user');
 var app = express();
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+mongoose.connect('mongodb://localhost/cinema', { promiseLibrary: require('bluebird') })
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -13,6 +22,12 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/books', express.static(path.join(__dirname, 'dist')));
 app.use('/book', book);
+app.use('/user', user);
+
+app.post('/signup', function(req, res) {
+
+  console.log('Request: '+req.body);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
