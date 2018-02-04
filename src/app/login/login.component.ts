@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms/src/model';
 import { FormBuilder } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +12,27 @@ import { Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm:FormGroup;
-  constructor(fb:FormBuilder,private loginService:LoginService) { 
+  loginForm: FormGroup;
+  constructor(fb: FormBuilder, private loginService: LoginService, private router: Router) {
     this.loginForm = fb.group({
-      'username':["",[Validators.required]],
-      'password':["",[Validators.required, this.passwordCheck]]
+      'username': ["", [Validators.required]],
+      'password': ["", [Validators.required, this.passwordCheck]]
     });
   }
 
-  passwordCheck(){
+  passwordCheck() {
     return true;
   }
   ngOnInit() {
   }
 
-  onSubmit(){
-    const val =this.loginForm.value;
+  onSubmit() {
+    const val = this.loginForm.value;
     console.log(this.loginForm.value);
     this.loginService.login(val);
+    if (this.loginService.loggedIn) {
+      this.router.navigateByUrl('/movie');
+    }
+
   }
 }
