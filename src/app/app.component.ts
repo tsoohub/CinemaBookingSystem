@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from './login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { LoginService } from './login/login.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private auth:LoginService){}
+  constructor(private auth:LoginService,private router:Router){}
 
   isLoggedIn(){
     return this.auth.loggedIn();
@@ -16,7 +17,8 @@ export class AppComponent {
 
   logout(){
     console.log('logging out');
-    return this.auth.logout();
-  }
+      this.auth.logout();
+      this.router.navigateByUrl('login');
+  } 
   
 }
