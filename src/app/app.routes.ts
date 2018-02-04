@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { TicketOrderComponent } from './ticket-order/ticket-order.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthGuard } from './guard/auth.guard';
+import { MovielistComponent } from './movielist/movielist.component';
 
 
 
@@ -15,8 +16,8 @@ const MY_ROUTES: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'ticket', component: TicketOrderComponent,canActivate:[AuthGuard]},
     {path: 'unauthorized', component: UnauthorizedComponent},
+    {path: 'movie', component: MovielistComponent},
     {path: '**', redirectTo: '/' },
-    
 ];
 
 export const myRoutes = RouterModule.forRoot(MY_ROUTES);

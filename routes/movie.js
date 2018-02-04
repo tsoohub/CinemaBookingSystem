@@ -1,21 +1,20 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('../models/User.js');
+var Movie = require('../models/Movie.js');
 
-/* GET ALL USERS */
+/* GET ALL MOVIES */
 router.get('/', function(req, res, next) {
-    User.find(function (err, users) {
-        if (err) return next(err);
-        res.json(users);
-    });
+   Movie.find(function (err, movies) {
+    if (err) return next(err);
+    res.json(movies);
+  });
 });
 
+/* SAVE BOOK */
 router.post('/', function(req, res, next) {
-
-    console.log("Data in server: "+req.body);
-
-    User.create(req.body, function (err, post) {
+    Movie.create(req.body, function (err, post) {
+        console.log(req.body);
         if (err) return next(err);
         res.json(post);
     });

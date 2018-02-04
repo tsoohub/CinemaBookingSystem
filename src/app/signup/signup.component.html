@@ -15,8 +15,15 @@
         <!--- User Signup Form -->
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
           <div class="col-md-12  contact-left">
-              <div *ngIf="!signupForm.controls['name'].valid">Invalid name</div>
-              <input type="text" placeholder="Name" [formControl]="signupForm.controls['name']">
+
+              <div *ngIf="!signupForm.controls['firstname'].valid">Invalid firstname</div>
+              <input type="text" placeholder="Firstname" [formControl]="signupForm.controls['firstname']">
+
+              <div *ngIf="!signupForm.controls['lastname'].valid">Invalid lastname</div>
+              <input type="text" placeholder="Lastname" [formControl]="signupForm.controls['lastname']">
+
+              <div *ngIf="!signupForm.controls['username'].valid">Invalid username</div>
+              <input type="text" placeholder="Username" [formControl]="signupForm.controls['username']">
 
               <div *ngIf="!signupForm.controls['email'].valid">Invalid email</div>
               <input type="text" 
@@ -25,6 +32,9 @@
               
               <div *ngIf="!signupForm.controls['phone'].valid">Invalid phone</div>
               <input type="text" placeholder="Phone" [formControl]="signupForm.controls['phone']">
+
+              <div *ngIf="!signupForm.controls['password'].valid">Invalid password</div>
+              <input type="text" placeholder="Password" [formControl]="signupForm.controls['password']">
 
               <input type="submit" value="SEND" [disabled]="!signupForm.valid">
             </div>

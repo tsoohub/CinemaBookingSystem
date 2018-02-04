@@ -14,6 +14,8 @@ import { AuthGuard } from './guard/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupServiceService } from './services/signup-service.service';
 import { SignupComponent } from './signup/signup.component';
+import { MovielistComponent } from './movielist/movielist.component';
+import { MovieServiceService } from './services/movie-service.service';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     TicketOrderComponent,
     UnauthorizedComponent,
-    SignupComponent
+    SignupComponent,
+    MovielistComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { SignupComponent } from './signup/signup.component';
     HttpClientModule,
     myRoutes
   ],
-  providers: [SignupServiceService,LoginService, AuthHttp,AuthGuard],
+  providers: [SignupServiceService,LoginService, AuthHttp,AuthGuard, MovieServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

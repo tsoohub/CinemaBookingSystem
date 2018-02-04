@@ -20,9 +20,12 @@ export class SignupComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: SignupServiceService, private router: Router) {
     this.signupForm = fb.group({
-      'name': ['', [Validators.required]],
+      'firstname': ['', [Validators.required]],
+      'lastname': ['', [Validators.required]],
+      'username': ['', [Validators.required]],
       'email': ['', [Validators.required]],
       'phone': ['', [Validators.required]],
+      'password': ['', [Validators.required]],
     });
   }
 
@@ -40,5 +43,6 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     // Save user information to the Database.
     this.http.signupUser(this.signupForm.value);
+    
   }
 }
