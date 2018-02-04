@@ -17,6 +17,7 @@ const MY_ROUTES: Routes = [
     {path: 'ticket', component: TicketOrderComponent,canActivate:[AuthGuard]},
     {path: 'unauthorized', component: UnauthorizedComponent},
     {path: 'movie', component: MovielistComponent},
+    {path: 'logout', redirectTo: '/logout' },
     {path: '**', redirectTo: '/' },
 ];
 
