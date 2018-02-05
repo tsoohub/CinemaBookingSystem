@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private auth:LoginService,private router:Router){}
+  constructor(private auth:LoginService,private router:Router){
+    
+  }
 
   isLoggedIn(){
     return this.auth.loggedIn();

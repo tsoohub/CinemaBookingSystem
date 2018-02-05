@@ -1,0 +1,74 @@
+<h6>Create Movie:</h6>
+<form [formGroup] = "movieForm" (ngSubmit)="onSubmit()" >
+  <div class="form-row">
+    <div class="col-auto">
+        <input type="text" 
+          class="form-control" 
+          placeholder="Movie name"
+          [formControl]="movieForm.controls['name']" >
+    </div>
+    <div class="col-auto">
+      <input type="text" 
+        class="form-control" 
+        placeholder="Description"
+        [formControl]="movieForm.controls['decs']">
+    </div>
+    <div class="col-auto">
+      <select class="form-control" [formControl]="movieForm.controls['genre']">
+        <option value="adventure">Adventure</option>
+        <option value="comedy">Comedy</option>
+        <option value="horror">Horror</option>
+      </select>
+    </div>
+    <div class="col-auto">
+        <input type="text" 
+          class="form-control form-one" 
+          placeholder="Adult price"
+          [formControl]="movieForm.controls['adult']">
+        <input type="text" 
+          class="form-control form-one" 
+          placeholder="Child price"
+          [formControl]="movieForm.controls['child']">
+        <input type="text" 
+          class="form-control form-one" 
+          placeholder="Image url"
+          [formControl]="movieForm.controls['img']">
+      </div>
+      <div class="clear"></div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  </div>
+</form>
+<br />
+<h6>Movies List:</h6>
+<div *ngIf="(movies | async)?.length!=0">
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Genre</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of movies | async">
+        <td><span (click)="toggleMovie(t)" [class.completed]="t.isCompleted">{{ t.id }}</span></td>
+        <td><span (click)="toggleMovie(t)" [class.completed]="t.isCompleted">{{ t.name }}</span></td>
+        <td><span (click)="toggleMovie(t)" [class.completed]="t.isCompleted">{{ t.decs }}</span></td>
+        <td>
+          <span *ngIf="t.genre == 'adventure'" class="badge badge-success">Adventure</span>
+          <span *ngIf="t.genre == 'comedy'" class="badge badge-warning">Comedy</span>
+          <span *ngIf="t.genre == 'horror'" class="badge badge-danger">Horror</span>
+        </td>
+        <td><b>Adult:</b>{{t.adult}}<br/><b>Child:</b> {{t.child}}</td>
+        <td><img src="{{t.img}}" alt="Img" width="50" height="50"></td>
+        <td><button class="btn btn-primary" (click)="removeMovie(t)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

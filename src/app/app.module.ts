@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
@@ -16,7 +16,11 @@ import { SignupServiceService } from './services/signup-service.service';
 import { SignupComponent } from './signup/signup.component';
 import { MovielistComponent } from './movielist/movielist.component';
 import { MovieServiceService } from './services/movie-service.service';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
 
+import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
+import { MovieoverviewComponent } from './movieoverview/movieoverview.component';
+import { MoviecrudComponent } from './moviecrud/moviecrud.component';
 
 @NgModule({
   declarations: [
@@ -26,15 +30,23 @@ import { MovieServiceService } from './services/movie-service.service';
     TicketOrderComponent,
     UnauthorizedComponent,
     SignupComponent,
-    MovielistComponent
+    MovielistComponent,
+    MovieoverviewComponent,
+    MoviecrudComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgReduxModule,
     myRoutes
   ],
   providers: [SignupServiceService,LoginService, AuthHttp,AuthGuard, MovieServiceService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor (ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}

@@ -21,6 +21,7 @@ export class SignupServiceService implements OnDestroy{
         localStorage.setItem('id_token', JSON.stringify(res));
       }
     );
+    this.router.navigate(['/movie']);
   }
 
   ngOnDestroy() {

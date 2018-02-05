@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
 var User = require('../models/User.js');
+var jwt = require('jsonwebtoken');
+
 
 /* GET ALL USERS */
 router.get('/', function(req, res, next) {
@@ -13,11 +14,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-    console.log("Data in server: "+req.body);
-
     User.create(req.body, function (err, post) {
         if (err) return next(err);
-        res.json(post);
+
+        var jwtBearerToken = jwt.sign({}, 'secret', { expiresIn: '1h' });
+        res.json(jwtBearerToken);
     });
 });
 

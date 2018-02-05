@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^7.1.0",
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
@@ -29,6 +30,7 @@
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^5.0.3",
     "morgan": "^1.9.0",
+    "redux": "^3.7.2",
     "rxjs": "^5.5.6",
     "serve-favicon": "^2.4.5",
     "zone.js": "^0.8.19"

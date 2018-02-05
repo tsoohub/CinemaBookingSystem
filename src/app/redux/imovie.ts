@@ -1,6 +1,4 @@
-var mongoose = require('mongoose');
-
-var MovieSchema = new mongoose.Schema({
+export interface IMovie {
     name: String,
     decs: String,
     genre: String,
@@ -11,6 +9,4 @@ var MovieSchema = new mongoose.Schema({
         startTime: String,
         totalSeat: Number,
     }]
-});
-
-module.exports = mongoose.model('movie', MovieSchema);
+};

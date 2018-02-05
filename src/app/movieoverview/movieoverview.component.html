@@ -1,0 +1,26 @@
+<div class="main">
+  <div class="contact-content">
+    <div class="top-header span_top">
+      <div class="logo">
+        <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+        <p>Movie Theater</p>
+      </div>
+      
+      <div class="clearfix"></div>
+    </div>
+    <div class="main-contact">
+      <h3 class="head">Movie manager</h3>
+      <div class="contact-form">
+
+        <!--- Movie CRUD -->
+        <p class="text-right">
+          <span class="badge badge-secondary">Last Update: {{ (lastUpdate | async) | date:'mediumTime' }} | Total items: {{ (movies | async).length }}</span>
+        </p>
+        <button class="btn btn-primary" (click)="clearMovies()">Delete All</button>
+
+        <app-moviecrud></app-moviecrud>
+
+      </div> 
+    </div>
+  </div>
+</div>

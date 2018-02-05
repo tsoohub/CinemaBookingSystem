@@ -6,6 +6,7 @@ import { TicketOrderComponent } from './ticket-order/ticket-order.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthGuard } from './guard/auth.guard';
 import { MovielistComponent } from './movielist/movielist.component';
+import { MovieoverviewComponent } from './movieoverview/movieoverview.component';
 
 
 
@@ -17,6 +18,7 @@ const MY_ROUTES: Routes = [
     {path: 'ticket', component: TicketOrderComponent,canActivate:[AuthGuard]},
     {path: 'unauthorized', component: UnauthorizedComponent},
     {path: 'movie', component: MovielistComponent},
+    {path: 'moviecrud', component: MovieoverviewComponent},
     {path: 'logout', redirectTo: '/logout' },
     {path: '**', redirectTo: '/' },
 ];
