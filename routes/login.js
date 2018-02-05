@@ -5,19 +5,17 @@ var jwt = require('jsonwebtoken');
 
 
 router.post('/', (req, res, next) => {
+    console.log('comingRq:'+req.body.username);
+    console.log(req.headers);
     User.findOne({ username: req.body.username, password: req.body.password }, function (err, user) {
         var jwtBearerToken;
-        
         if (user != null) {
-            console.log(user._id);
             jwtBearerToken = jwt.sign(
                 {}, 'secret', { expiresIn: '1h' });
-
-            console.log('token:' + jwtBearerToken);
-            res.json({token:jwtBearerToken,loggedUser:user});
+            res.json({ token: jwtBearerToken, loggedUser: user });
         }
-        else{
-            res.sendStatus(401); 
+        else {
+            res.sendStatus(401);
         }
     });
 });

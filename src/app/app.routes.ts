@@ -7,6 +7,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthGuard } from './guard/auth.guard';
 import { MovielistComponent } from './movielist/movielist.component';
 import { MovieoverviewComponent } from './movieoverview/movieoverview.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 
@@ -20,6 +21,7 @@ const MY_ROUTES: Routes = [
     {path: 'movie', component: MovielistComponent, canActivate: [AuthGuard]},
     {path: 'moviecrud', component: MovieoverviewComponent, canActivate: [AuthGuard]},
     {path: 'movie/ticket/:movieId', component: TicketOrderComponent, canActivate:[AuthGuard]},
+    {path: 'movie/ticketConfirmation', component: ConfirmationComponent, canActivate:[AuthGuard]},
     {path: 'logout', redirectTo: '/logout' },
     {path: '**', redirectTo: '/' },
 ];

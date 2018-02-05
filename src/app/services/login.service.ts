@@ -11,10 +11,17 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) {
 
   }
+  /* Molomjamts -02/03/2018 
+  Login. Sending login request to express application
+  if login is successful, it will call the saveData function, 
+  otherwise, will navigate to login page*/
   login(credentials) {
     this.http.post('http://localhost:3000/login', credentials, { headers: { 'Content-Type': 'application/json' } }).subscribe(
-
-      data => this.saveData(data),
+      data => {
+        this.saveData(data);
+        console.log(data);
+      }
+      ,
       error => {
         console.log(" error: " + error);
         this.router.navigateByUrl('/login');
@@ -22,16 +29,30 @@ export class LoginService {
     )
 
   }
+  /* Molomjamts - 02/04/2018
+   if user successfully logged in, this function will be called
+   it will save tokenId and User information to localstorage */
   private saveData(data) {
     localStorage.setItem('id_token', data.token);
     console.log('id_token:::', data.token);
     console.log('id_token:::', data.loggedUser);
     localStorage.setItem("user", JSON.stringify(data.loggedUser));
   }
+
+  /* Molomjamts - 02/03/2018
+  it is used to check if user logged in or not.
+  the function will return true if the user is logged in.
+  otherwise return false.
+  */
   loggedIn() {
     // console.log('token_Id' + localStorage.getItem('id_token'));
     return tokenNotExpired('id_token');
   }
+
+  /* Molomjamts - 02/03/2018 
+  Logout function. it will remove token ID and user information 
+  from the localstorage when user is logged out.
+  */
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('user');

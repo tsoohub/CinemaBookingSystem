@@ -7,9 +7,12 @@ export class TicketOrderService {
 
   constructor(private http: HttpClient) { }
 
+  /* Molomjamts - 02/04/2018
+   sending request to express application to order new tickets.
+   it will add new record to user's "userTickets" array which includes 
+   ticket order information.
+  */
   orderTicket(id,orderedTicket,loggedUser) {
-    let header = new Headers({ 'Content-Type': 'application/json' });
-    // let options = new RequestOptions({ headers: header });
       return this.http.put('http://localhost:3000/order/' + id, {tickets:orderedTicket,user:loggedUser});
   }
 }

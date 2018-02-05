@@ -9,18 +9,23 @@
         <form [formGroup]="ticketOrderForm" (ngSubmit)="onSubmit()">
           <div class="col-md-12  contact-left">
 
-            <div *ngIf="!ticketOrderForm.controls['time'].valid">Invalid time</div>
-            <select type="text" [formControl]="ticketOrderForm.controls['time']" (change)="onChange($event.target.value)">
+            <div></div>
+            <label for="adultCount">Start Time</label>
+             <span  *ngIf="!ticketOrderForm.controls['time'].valid">Invalid time</span> <br>
+            <select type="text" [formControl]="ticketOrderForm.controls['time']" (change)="onChange($event)">
               <option *ngFor="let time of movie.schedule" [ngValue]="time.startTime">
                 {{time.startTime}}
             </option>
             </select>
             <!-- <p>Number of Available seat {{curSchedule.totalSeat}}</p>  -->
-            <div *ngIf="!ticketOrderForm.controls['adultCount'].valid">Invalid number</div>
+            <br> <br>
+            <label for="adultCount">Ticket count (Adult)</label>
+            <span  *ngIf="!ticketOrderForm.controls['time'].valid">Invalid Number</span>
             <input type="text" placeholder="0" [formControl]="ticketOrderForm.controls['adultCount']">
             
 
-            <div *ngIf="!ticketOrderForm.controls['childrenCount'].valid">Invalid number</div>
+             <label for="adultCount">Ticket count (Children)</label>
+            <span  *ngIf="!ticketOrderForm.controls['time'].valid">Invalid Number</span>
             <input type="text" placeholder="0" [formControl]="ticketOrderForm.controls['childrenCount']">
 
 
