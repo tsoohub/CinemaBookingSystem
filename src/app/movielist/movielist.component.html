@@ -13,7 +13,7 @@
         <div class="content-grids">
 
           <div class="content-grid" *ngFor="let movie of movies">
-            <a class="play-icon popup-with-zoom-anim" href="#small-dialog">
+            <a class="play-icon popup-with-zoom-anim" [routerLink]="['ticket', movie._id]">
               <img src="{{movie.img}}" title="allbum-name" width= "270px" height= "270px">
             </a>
             <h3>{{movie.decs}}</h3>
@@ -22,11 +22,12 @@
               <li><a href="#"><img src="assets/images/views.png" title="image-name"></a></li>
               <li><a href="#"><img src="assets/images/link.png" title="image-name"></a></li>
             </ul>
-            <a class="button play-icon popup-with-zoom-anim" href="#small-dialog">Order now</a>
+            <a [routerLink]="['ticket', movie._id]">Order ticket</a>
           </div>
 
         </div>
       </div>
     </div>
   </div>
+  <!-- <router-outlet></router-outlet> -->
   

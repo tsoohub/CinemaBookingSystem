@@ -12,6 +12,7 @@ export class MovielistComponent implements OnInit {
   constructor(private http: MovieServiceService) { }
 
   movies: any;
+  schedule:any;
 
   ngOnInit() {
     this.http.getAllMovies().subscribe(movie => {

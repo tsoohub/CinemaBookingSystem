@@ -7,6 +7,8 @@ var book = require('./routes/book');
 var user = require('./routes/user');
 var login = require('./routes/login');
 var movie = require('./routes/movie');
+var order = require('./routes/order');
+var cors  = require('cors');
 
 var app = express();
 var mongoose = require('mongoose');
@@ -17,6 +19,7 @@ mongoose.connect('mongodb://localhost/cinema', { promiseLibrary: require('bluebi
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -28,6 +31,7 @@ app.use('/login', login);
 app.use('/user', user);
 app.use('/signup', user);
 app.use('/movie', movie);
+app.use('/order', order);
 
 app.use('*', function(req, res) {
   res.render('index', { req, res });
@@ -51,4 +55,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(3000);
+// module.exports = app;

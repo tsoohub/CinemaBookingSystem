@@ -8,7 +8,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { TicketOrderComponent } from './ticket-order/ticket-order.component';
 import { myRoutes } from './app.routes';
-import { LoginService } from './login/login.service';
+import { LoginService } from './services/login.service';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthGuard } from './guard/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +16,7 @@ import { SignupServiceService } from './services/signup-service.service';
 import { SignupComponent } from './signup/signup.component';
 import { MovielistComponent } from './movielist/movielist.component';
 import { MovieServiceService } from './services/movie-service.service';
+import { TicketOrderService } from './services/ticket-order.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { MovieServiceService } from './services/movie-service.service';
     HttpClientModule,
     myRoutes
   ],
-  providers: [SignupServiceService,LoginService, AuthHttp,AuthGuard, MovieServiceService],
+  providers: [SignupServiceService, LoginService, AuthHttp, AuthGuard, MovieServiceService, TicketOrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

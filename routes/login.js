@@ -13,7 +13,7 @@ router.post('/', (req, res, next) => {
                 {}, 'secret', { expiresIn: '1h' });
 
             console.log('token:' + jwtBearerToken);
-            res.json(jwtBearerToken);
+            res.json({token:jwtBearerToken,loggedUser:user});
         }
         else{
             res.sendStatus(401); 

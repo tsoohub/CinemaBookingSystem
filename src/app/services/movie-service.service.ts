@@ -7,8 +7,11 @@ import { Observable } from 'rxjs/Observable';
 export class MovieServiceService {
 
   constructor(public http: HttpClient, private router: Router) { }
-
+  
+  getMovieById(id){
+    return this.http.get('http://localhost:3000/movie/'+id);
+  }
   getAllMovies() {
-    return this.http.get('/movie');
+    return this.http.get('http://localhost:3000/movie');
   }
 }

@@ -8,8 +8,8 @@ var UserSchema = new mongoose.Schema({
     phone: String,
     password: String,
     userTickets: [
-        { movieId: Number, 
-          scheduleId: Number,
+        { movieId: String, 
+          time: String,
           adultCount: Number,
           childrenCount: Number }
     ]
