@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +19,7 @@ const MY_ROUTES: Routes = [
     {path: 'unauthorized', component: UnauthorizedComponent},
     {path: 'movie', component: MovielistComponent},
     {path: 'moviecrud', component: MovieoverviewComponent},
+    {path: 'movie/ticket/:movieId', component: TicketOrderComponent, canActivate:[AuthGuard]},
     {path: 'logout', redirectTo: '/logout' },
     {path: '**', redirectTo: '/' },
 ];
