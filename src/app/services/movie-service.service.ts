@@ -14,4 +14,12 @@ export class MovieServiceService {
   getAllMovies() {
     return this.http.get('http://localhost:3000/movie');
   }
+
+  insertMovie(movie) {
+    return this.http.post('http://localhost:3000/movie', movie);
+  }
+
+  deleteMovie(id) {
+    return this.http.delete('http://localhost:3000/movie/'+id);
+  }
 }

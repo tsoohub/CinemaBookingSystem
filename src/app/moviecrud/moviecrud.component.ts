@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../redux/store';
-import { ADD_MOVIE, REMOVE_MOVIE, TOGGLE_MOVIE } from '../redux/actions';
+import { ADD_MOVIE, REMOVE_MOVIE } from '../redux/actions';
 import { IMovie } from '../redux/imovie';
 import {
   FormGroup,
@@ -10,6 +10,9 @@ import {
   FormBuilder,
   FormArray
 } from "@angular/forms";
+import { MovieServiceService } from '../services/movie-service.service';
+import { Subscription } from 'rxjs/Subscription';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-moviecrud',
@@ -17,11 +20,15 @@ import {
   styleUrls: ['./moviecrud.component.css']
 })
 
-export class MoviecrudComponent implements OnInit {
+export class MoviecrudComponent implements OnInit, OnDestroy {
 
   @select() movies;
   movieForm: FormGroup;
-  constructor(private fb: FormBuilder, private ngRedux: NgRedux<IAppState>) { 
+  mymovies: any;
+  schedule:any;
+  subscription: Subscription;
+
+  constructor(private fb: FormBuilder, private ngRedux: NgRedux<IAppState>, private movieService: MovieServiceService) { 
     this.movieForm = fb.group({
       'name': ['', [Validators.required]],
       'decs': ['', [Validators.required]],
@@ -33,18 +40,29 @@ export class MoviecrudComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.subscription = this.movieService.getAllMovies().subscribe(movie => {
+        
+        for(let i in movie) {
+          this.ngRedux.dispatch({type: ADD_MOVIE, movie: movie[i]});
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onSubmit() {
-    let val = this.movieForm.value;
-    console.log("Before:  "+val);
-    this.ngRedux.dispatch({type: ADD_MOVIE, movie: val});
-    console.log("After:   "+this.ngRedux.getState());
-  }
-  toggleMovie(movie) {
-    this.ngRedux.dispatch({ type: TOGGLE_MOVIE, id: movie.id });
+    let movie = this.movieForm.value;
+    /* Add movie to MongoDB */ 
+    this.subscription = this.movieService.insertMovie(movie).subscribe(res => {});
+    /* Add movie to Redux Store */
+    this.ngRedux.dispatch({type: ADD_MOVIE, movie: movie});
   }
   removeMovie(movie) {
+    let id = movie._id;
     this.ngRedux.dispatch({type: REMOVE_MOVIE, id: movie.id });
+    this.subscription = this.movieService.deleteMovie(id).subscribe(res => {});
   }
+
 }

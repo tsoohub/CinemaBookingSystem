@@ -57,15 +57,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let t of movies | async">
-        <td><span (click)="toggleMovie(t)" [class.completed]="t.isCompleted">{{ t.id }}</span></td>
-        <td><span (click)="toggleMovie(t)" [class.completed]="t.isCompleted">{{ t.name }}</span></td>
-        <td><span (click)="toggleMovie(t)" [class.completed]="t.isCompleted">{{ t.decs }}</span></td>
+        <td><span [class.completed]="t.isCompleted">{{ t.id }}</span></td>
+        <td><span [class.completed]="t.isCompleted">{{ t.name }}</span></td>
+        <td><span [class.completed]="t.isCompleted">{{ t.decs }}</span></td>
         <td>
           <span *ngIf="t.genre == 'adventure'" class="badge badge-success">Adventure</span>
           <span *ngIf="t.genre == 'comedy'" class="badge badge-warning">Comedy</span>
           <span *ngIf="t.genre == 'horror'" class="badge badge-danger">Horror</span>
         </td>
-        <td><b>Adult:</b>{{t.adult}}<br/><b>Child:</b> {{t.child}}</td>
+        <td><b>Adult:</b>{{t.adult}}&#36;<br/><b>Child:</b> {{t.child}}&#36;</td>
         <td><img src="{{t.img}}" alt="Img" width="50" height="50"></td>
         <td><button class="btn btn-primary" (click)="removeMovie(t)">Delete</button></td>
       </tr>

@@ -1,33 +1,24 @@
 <div class="main">
-    <div class="contact-content">
-      <div class="top-header span_top">
-        <div class="logo">
-          <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
-          <p>Movie Theater</p>
-        </div>
-        
-        <div class="clearfix"></div>
-      </div>
-      <div class="main-contact">
-        <h3 class="head">Movie list</h3>
-        <div class="content-grids">
+  <div class="contact-content">
+    <header></header>
+    <div class="main-contact">
+      <h3>Movie list</h3>
+      <div class="content-grids">
 
-          <div class="content-grid" *ngFor="let movie of movies">
-            <a class="play-icon popup-with-zoom-anim" [routerLink]="['ticket', movie._id]">
-              <img src="{{movie.img}}" title="allbum-name" width= "270px" height= "270px">
-            </a>
-            <h3>{{movie.decs}}</h3>
-            <ul>
-              <li><a href="#"><img src="assets/images/likes.png" title="image-name"></a></li>
-              <li><a href="#"><img src="assets/images/views.png" title="image-name"></a></li>
-              <li><a href="#"><img src="assets/images/link.png" title="image-name"></a></li>
-            </ul>
-            <a [routerLink]="['ticket', movie._id]">Order ticket</a>
-          </div>
-
+        <div class="content-grid" *ngFor="let movie of movies">
+          <a class="play-icon popup-with-zoom-anim" [routerLink]="['ticket', movie._id]">
+            <img src="{{movie.img}}" title="allbum-name" width= "270px" height= "270px">
+          </a>
+          <h3>{{movie.decs}}</h3>
+          <ul>
+            <li><a href="#"><img src="assets/images/likes.png" title="image-name"></a></li>
+            <li><a href="#"><img src="assets/images/views.png" title="image-name"></a></li>
+            <li><a href="#"><img src="assets/images/link.png" title="image-name"></a></li>
+          </ul>
+          <a [routerLink]="['ticket', movie._id]">Order ticket</a>
         </div>
+
       </div>
     </div>
   </div>
-  <!-- <router-outlet></router-outlet> -->
-  
+</div>

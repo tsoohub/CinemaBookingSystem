@@ -15,13 +15,22 @@ export class SignupServiceService implements OnDestroy{
 
   signupUser(user) {
     
-    this.subscribe = this.http.post('/user', user).subscribe(
-      function (res) {
-        res => res.json();
-        localStorage.setItem('id_token', JSON.stringify(res));
+    this.subscribe = this.http.post('http://localhost:3000/user', user, { headers: { 'Content-Type': 'application/json' } } ).subscribe(
+      data => this.saveData(data),
+      error => {
+        console.log(" error: " + error);
+        this.router.navigateByUrl('/login');
       }
     );
     this.router.navigate(['/movie']);
+  }
+
+  private saveData(data) {
+    console.log('data: '+data);
+    localStorage.setItem('id_token', data.token);
+    console.log('id_token:::', data.token);
+    console.log('id_token:::', data.loggedUser);
+    localStorage.setItem("user", JSON.stringify(data.loggedUser));
   }
 
   ngOnDestroy() {

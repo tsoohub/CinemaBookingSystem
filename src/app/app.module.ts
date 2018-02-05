@@ -22,6 +22,7 @@ import { TicketOrderService } from './services/ticket-order.service';
 import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
 import { MovieoverviewComponent } from './movieoverview/movieoverview.component';
 import { MoviecrudComponent } from './moviecrud/moviecrud.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MoviecrudComponent } from './moviecrud/moviecrud.component';
     SignupComponent,
     MovielistComponent,
     MovieoverviewComponent,
-    MoviecrudComponent
+    MoviecrudComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

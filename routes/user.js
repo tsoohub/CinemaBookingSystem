@@ -14,11 +14,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-    User.create(req.body, function (err, post) {
+    User.create(req.body, function (err, user) {
         if (err) return next(err);
 
         var jwtBearerToken = jwt.sign({}, 'secret', { expiresIn: '1h' });
-        res.json(jwtBearerToken);
+        res.json({token:jwtBearerToken,loggedUser:user});
     });
 });
 

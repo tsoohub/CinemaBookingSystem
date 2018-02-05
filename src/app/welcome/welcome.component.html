@@ -1,12 +1,6 @@
 <div class="main">
   <div class="header">
-      <div class="top-header">
-          <div class="logo">
-              <a href="index.html"><img src="assets/images/logo.png" alt="" /></a>
-              <p>Movie TICKET</p>
-          </div>
-          <div class="clearfix"></div>
-      </div>
+      <header></header>
       <div class="header-info">
           <h1>BIG HERO 6</h1>
           <p class="age"><a href="#">All Age</a> Don Hall, Chris Williams</p>
@@ -14,8 +8,8 @@
           <p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; Animation, Action, Comedy</p>
           <p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp; 7 November 2014</p>
           <p class="special">The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.</p>
-          <a class="video" [routerLink]="['signup']"><i class="video1"></i>Sign up</a>
-          <a class="book" [routerLink]="['moviecrud']"><i class="book1"></i>Movie CRUD</a>
+          <a *ngIf="!isLoggedIn()" class="video" [routerLink]="['signup']"><i class="video1"></i>Sign up</a>
+          <a *ngIf="isLoggedIn()" class="book" [routerLink]="['moviecrud']"><i class="book1"></i>Movie CRUD</a>
       </div>
   </div>
 </div>
