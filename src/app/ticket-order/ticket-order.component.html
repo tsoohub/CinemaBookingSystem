@@ -17,7 +17,7 @@
                 {{time.startTime}}
             </option>
             </select>
-            <!-- <p>Number of Available seat {{curSchedule.totalSeat}}</p>  -->
+             <h2 *ngIf="curSchedule">Number of Available seat {{totalSeat}}</h2> 
             <br> <br>
             <label for="adultCount">Ticket count (Adult)</label>
             <span  *ngIf="!ticketOrderForm.controls['time'].valid">Invalid Number</span>

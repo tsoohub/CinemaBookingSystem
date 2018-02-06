@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfirmationServiceService } from '../services/confirmation-service.service';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 export interface Movie {
   _id: String,
   name: String,
@@ -30,7 +31,7 @@ export interface Schedule {
 
   _id: String,
   startTime: String,
-  totalSeat: Number
+  totalSeat: any
 }
 @Component({
   selector: 'app-ticket-order',
@@ -45,6 +46,9 @@ export class TicketOrderComponent implements OnInit {
   private sub: Subscription;
   movie: Movie;
   curSchedule: Schedule;
+  totalSeat:any=1;
+  adultSeat:any=0;
+  childrenSeat:any=0;
   constructor(fb: FormBuilder, private order: TicketOrderService,
     private movieService: MovieServiceService, private activeRoute: ActivatedRoute,
     private confrimService: ConfirmationServiceService,
@@ -60,12 +64,30 @@ export class TicketOrderComponent implements OnInit {
 
     });
 
-
     this.ticketOrderForm = fb.group({
       'time': ['', [Validators.required]],
       'adultCount': ['', [Validators.required, Validators.min(0), Validators.max(40)]],
       'childrenCount': ['', [Validators.required, Validators.min(0), Validators.max(40)]],
     });
+
+    this.ticketOrderForm.controls['adultCount'].valueChanges.subscribe(
+      (data: any) => {
+        console.log(data);
+        this.adultSeat =data;
+        this.totalSeat = this.curSchedule.totalSeat-this.adultSeat-this.childrenSeat;
+        
+        console.log(this.curSchedule.totalSeat-data)
+      }
+    );
+    this.ticketOrderForm.controls['childrenCount'].valueChanges.subscribe(
+      (data: any) => {
+        console.log(data);
+        this.childrenSeat = data;
+        this.totalSeat = this.curSchedule.totalSeat-this.adultSeat-this.childrenSeat;
+        
+        console.log(this.curSchedule.totalSeat-data)
+      }
+    );
   }
 
   ngOnInit() {
@@ -97,9 +119,24 @@ export class TicketOrderComponent implements OnInit {
   }
 
   onChange(value) {
-    console.log('schedule=' + this.movie.schedule.filter(x => x.startTime === value));
-    this.curSchedule = this.movie.schedule.filter(x => x.startTime === value)[0];
-    console.log('selectedValue:', value);
-    console.log('curSchedule:', this.curSchedule);
+    this.curSchedule = this.movie.schedule.filter(x => x.startTime === this.ticketOrderForm.value.time)[0];
+    this.totalSeat = this.curSchedule.totalSeat;
   }
+
+  checkAvaiableSeat(control: FormControl): {[s: string]: boolean} {
+    if (this.totalSeat>this.adultSeat+this.childrenSeat) {
+      return {result: true};
+    }
+    return null;
+  }
+
+  // checkAvaiableSeat(){
+  //   var orderedSeat = this.ticketOrderForm.value.adultCount+this.ticketOrderForm.value.childrenCount;
+  //   if(this.curSchedule.totalSeat>orderedSeat){
+  //     return true;
+  //   }
+  //   else{
+  //     return false;
+  //   }
+  // }
 }
