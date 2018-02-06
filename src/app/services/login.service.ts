@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginService {
-
+  url:String ="http://localhost:3000";
+  // url:String ="https://cinema-booking-demo.herokuapp.com";
+  
   constructor(private http: HttpClient, private router: Router) {
 
   }
@@ -16,7 +18,7 @@ export class LoginService {
   if login is successful, it will call the saveData function, 
   otherwise, will navigate to login page*/
   login(credentials) {
-    this.http.post('https://cinema-booking-demo.herokuapp.com/login', credentials, { headers: { 'Content-Type': 'application/json' } }).subscribe(
+    this.http.post(this.url+'/login', credentials, { headers: { 'Content-Type': 'application/json' } }).subscribe(
       data => {
         this.saveData(data);
         console.log('dddd',data);

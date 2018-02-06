@@ -27,6 +27,7 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
   mymovies: any;
   schedule:any;
   subscription: Subscription;
+  movietimes: Array<String> = ["12:00", "15:00", "17:00", "21:00"];
 
   constructor(private fb: FormBuilder, private ngRedux: NgRedux<IAppState>, private movieService: MovieServiceService) { 
     this.movieForm = fb.group({
@@ -36,7 +37,14 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
       'img': ['', [Validators.required]],
       'adult': ['', [Validators.required]],
       'child': ['', [Validators.required]],
+      'schedule': fb.array(
+        ['startTime', Validators.required],
+      )  
     });
+  }
+
+  onAddTime() {
+    (<FormArray>this.movieForm.controls['schedule']).push(new FormControl('', Validators.required));
   }
 
   ngOnInit() {
@@ -54,10 +62,13 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     let movie = this.movieForm.value;
+    /* Add seats to time */
+    movie.schedule = movie.schedule.map(function (value, label) {return {'startTime': value, 'totalSeat': 50};});
     /* Add movie to MongoDB */ 
     this.subscription = this.movieService.insertMovie(movie).subscribe(res => {});
     /* Add movie to Redux Store */
     this.ngRedux.dispatch({type: ADD_MOVIE, movie: movie});
+    
   }
   removeMovie(movie) {
     let id = movie._id;

@@ -35,6 +35,17 @@
         [formControl]="movieForm.controls['img']">
     </div>
     
+    <div formArrayName="schedule">
+      <h6>Movie times: <button type="button" class="btn btn-primary" (click)="onAddTime()">Add time</button></h6>
+      <div class="col-auto" *ngFor="let time of movieForm.controls['schedule'].controls; let i = index">
+        <select class="form-control" formControlName="{{i}}">
+
+          <option *ngFor="let ti of movietimes" value="{{ti}}">{{ti}}</option>
+          
+        </select>
+      </div>
+    </div>
+    
     <div class="clear"></div>
     <div class="col-auto">
       <button type="submit" class="btn btn-primary">Create</button>

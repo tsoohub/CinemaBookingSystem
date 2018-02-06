@@ -7,19 +7,22 @@ import { Observable } from 'rxjs/Observable';
 export class MovieServiceService {
 
   constructor(public http: HttpClient, private router: Router) { }
-  
+  url:String ="http://localhost:3000";
+
   getMovieById(id){
-    return this.http.get('https://cinema-booking-demo.herokuapp.com/movie/'+id);
+    return this.http.get(this.url+'/movie/'+id);
   }
   getAllMovies() {
-    return this.http.get('https://cinema-booking-demo.herokuapp.com/movie');
+    return this.http.get(this.url+'/movie');
   }
 
   insertMovie(movie) {
-    return this.http.post('https://cinema-booking-demo.herokuapp.com/movie', movie);
+    console.log(movie);
+    // return this.http.post('https://cinema-booking-demo.herokuapp.com/movie', movie);
+    return this.http.post(this.url+'/movie', movie);
   }
 
   deleteMovie(id) {
-    return this.http.delete('https://cinema-booking-demo.herokuapp.com/movie/'+id);
+    return this.http.delete(this.url+'/movie/'+id);
   }
 }
