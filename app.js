@@ -13,6 +13,9 @@ var jwt = require('express-jwt');
 
 var app = express();
 var mongoose = require('mongoose');
+
+const PORT = process.env.PORT || 3000;
+
 mongoose.Promise = require('bluebird');
 // mongoose.connect('mongodb://localhost/cinema', { promiseLibrary: require('bluebird') })
 mongoose.connect('mongodb://mwa:mwa@ds125578.mlab.com:25578/cinema', { promiseLibrary: require('bluebird') })
@@ -39,7 +42,8 @@ app.use('/movie', authCheck, movie);
 app.use('/order', authCheck, order);
 
 app.use('*', function (req, res) {
-  res.render('index', { req, res });
+  res.send('Hello');
+  res.end();
 });
 
 // catch 404 and forward to error handler
@@ -69,4 +73,4 @@ app.use(function (err, req, res, next) {
   }
 });
 
-app.listen(3000);
+app.listen(PORT);

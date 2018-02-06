@@ -40,8 +40,8 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+      /* When component initializing, i add all movies to Redux store. */
       this.subscription = this.movieService.getAllMovies().subscribe(movie => {
-        
         for(let i in movie) {
           this.ngRedux.dispatch({type: ADD_MOVIE, movie: movie[i]});
         }
@@ -61,6 +61,7 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
   }
   removeMovie(movie) {
     let id = movie._id;
+    /* Here, i removing movie from Redux store and mongoDB */
     this.ngRedux.dispatch({type: REMOVE_MOVIE, id: movie.id });
     this.subscription = this.movieService.deleteMovie(id).subscribe(res => {});
   }
