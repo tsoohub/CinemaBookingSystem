@@ -4,18 +4,19 @@ import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Globals } from '../globals';
 
 @Injectable()
 export class SignupServiceService implements OnDestroy {
 
   subscribe: Subscription;
-  constructor(public http: HttpClient, private router: Router) {
+  constructor(public http: HttpClient, private router: Router,private gl:Globals) {
 
   }
 
   signupUser(user) {
 
-    this.subscribe = this.http.post('https://cinema-booking-demo.herokuapp.com/user', user, { headers: { 'Content-Type': 'application/json' } }).subscribe(
+    this.subscribe = this.http.post(this.gl.URL+'/user', user, { headers: { 'Content-Type': 'application/json' } }).subscribe(
       data => {
         this.saveData(data);
         this.router.navigate(['/movie']);

@@ -26,6 +26,7 @@ import { HeaderComponent } from './header/header.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ConfirmationServiceService } from './services/confirmation-service.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { Globals } from './globals';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
       provide: HTTP_INTERCEPTORS, 
       useClass: TokenInterceptorService, 
       multi: true 
-  } ],
+  },Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule {
