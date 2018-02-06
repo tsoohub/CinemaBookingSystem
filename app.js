@@ -41,10 +41,10 @@ app.use('/signup', user);
 app.use('/movie', authCheck, movie);
 app.use('/order', authCheck, order);
 
-// app.use('*', function (req, res) {
-//   res.send('Hello');
-//   res.end();
-// });
+app.use('*', function (req, res) {
+  res.send('Hello');
+  res.end();
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
