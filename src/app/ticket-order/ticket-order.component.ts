@@ -46,9 +46,9 @@ export class TicketOrderComponent implements OnInit {
   private sub: Subscription;
   movie: Movie;
   curSchedule: Schedule;
-  totalSeat:any=1;
-  adultSeat:any=0;
-  childrenSeat:any=0;
+  totalSeat: any = 1;
+  adultSeat: any = 0;
+  childrenSeat: any = 0;
   constructor(fb: FormBuilder, private order: TicketOrderService,
     private movieService: MovieServiceService, private activeRoute: ActivatedRoute,
     private confrimService: ConfirmationServiceService,
@@ -66,26 +66,26 @@ export class TicketOrderComponent implements OnInit {
 
     this.ticketOrderForm = fb.group({
       'time': ['', [Validators.required]],
-      'adultCount': ['', [Validators.required, Validators.min(0), Validators.max(40)],Validators.pattern("[0-9]")],
-      'childrenCount': ['', [Validators.required, Validators.min(0), Validators.max(40)],Validators.pattern("[0-9]")],
+      'adultCount': ['', [Validators.required, Validators.min(0), Validators.max(3), Validators.pattern('^[1-9]{1,3}$')]],
+      'childrenCount': ['', [Validators.required, Validators.min(0), Validators.max(3), Validators.pattern('^[1-9]{1,3}$')]],
     });
 
     this.ticketOrderForm.controls['adultCount'].valueChanges.subscribe(
       (data: any) => {
         console.log(data);
-        this.adultSeat =data;
-        this.totalSeat = this.curSchedule.totalSeat-this.adultSeat-this.childrenSeat;
-        
-        console.log(this.curSchedule.totalSeat-data)
+        this.adultSeat = data;
+        this.totalSeat = this.curSchedule.totalSeat - this.adultSeat - this.childrenSeat;
+
+        console.log(this.curSchedule.totalSeat - data)
       }
     );
     this.ticketOrderForm.controls['childrenCount'].valueChanges.subscribe(
       (data: any) => {
         console.log(data);
         this.childrenSeat = data;
-        this.totalSeat = this.curSchedule.totalSeat-this.adultSeat-this.childrenSeat;
-        
-        console.log(this.curSchedule.totalSeat-data)
+        this.totalSeat = this.curSchedule.totalSeat - this.adultSeat - this.childrenSeat;
+
+        console.log(this.curSchedule.totalSeat - data)
       }
     );
   }
@@ -123,9 +123,9 @@ export class TicketOrderComponent implements OnInit {
     this.totalSeat = this.curSchedule.totalSeat;
   }
 
-  checkAvaiableSeat(control: FormControl): {[s: string]: boolean} {
-    if (this.totalSeat>this.adultSeat+this.childrenSeat) {
-      return {result: true};
+  checkAvaiableSeat(control: FormControl): { [s: string]: boolean } {
+    if (this.totalSeat > this.adultSeat + this.childrenSeat) {
+      return { result: true };
     }
     return null;
   }

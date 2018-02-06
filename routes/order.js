@@ -17,7 +17,7 @@ router.put('/:id', (req, res, next) => {
                 movie.save();
             }
             else{
-                
+                throw err;
             }
         });
         res.json(user);
