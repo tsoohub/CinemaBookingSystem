@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
+/* CREATE NEW USERS, by Tsoodol 02/03/2018 */
 router.post('/', function(req, res, next) {
     
     User.create(req.body, function (err, user) {

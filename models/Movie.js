@@ -1,3 +1,6 @@
+/* Tsoodol 02/03/2018
+   Movie collections with all property and type*/
+ 
 var mongoose = require('mongoose');
 
 var MovieSchema = new mongoose.Schema({

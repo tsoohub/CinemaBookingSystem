@@ -5,7 +5,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class MovieServiceService {
-  /* Movie Service to CRUD in MongoDB created by Tsoodol 02/06/2018 */
+  /* created by Tsoodol 02/06/2018 
+     Movie Service to CRUD in MongoDB
+     Send request to movie url to Node JS */
   constructor(public http: HttpClient, private router: Router) { }
   
   getMovieById(id){

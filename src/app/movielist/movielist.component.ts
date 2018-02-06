@@ -10,7 +10,10 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class MovielistComponent implements OnInit, OnDestroy {
 
-  /* Movie List crud created by Tsoodol 02/06/2018 */ 
+  /* Tsoodol 02/06/2018
+     Display list of movies from the MongoDB movies collection.
+     When user clicks on the movie, it will jump into order component.
+  */ 
   constructor(private http: MovieServiceService) { }
 
   movies: any;

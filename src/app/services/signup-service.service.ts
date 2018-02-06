@@ -7,7 +7,10 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Injectable()
 export class SignupServiceService implements OnDestroy {
-  /* Signup Service to CRUD in MongoDB created by Tsoodol 02/06/2018 */
+  /* created by Tsoodol 02/06/2018
+    Signup Service to CRUD in MongoDB
+    Send POST request to user url to Node JS, 
+    navigate into the movie page */
   subscribe: Subscription;
   constructor(public http: HttpClient, private router: Router) {
 

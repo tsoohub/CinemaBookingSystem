@@ -12,7 +12,9 @@ export class MovieoverviewComponent implements OnInit {
 
   @select() movies;
   @select() lastUpdate;
-  /* Movie overview, created by Tsoodol 02/06/2018 */ 
+  /* Tsoodol 02/04/2018
+     Overfiew component responsible for managin all movies.
+  */ 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {

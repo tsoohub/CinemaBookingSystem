@@ -29,7 +29,9 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   movietimes: Array<String> = ["12:00", "15:00", "17:00", "21:00"];
 
-  /* Movie crud in mongoDB created by Tsoodol 02/06/2018 */ 
+  /*Created by Tsoodol 02/04/2018
+    This component's responsible for create, delete movie from Redux & MongoDB
+    Movie crud in mongoDB */ 
   constructor(private fb: FormBuilder, private ngRedux: NgRedux<IAppState>, private movieService: MovieServiceService) { 
     this.movieForm = fb.group({
       'name': ['', [Validators.required]],
@@ -44,10 +46,12 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
     });
   }
 
+  /* Add new time control to current movie */
   onAddTime() {
     (<FormArray>this.movieForm.controls['schedule']).push(new FormControl('', Validators.required));
   }
 
+  /* When application first run, it will add program states to redux store */
   ngOnInit() {
       if(this.ngRedux.getState().movies.length ==0) {
         /* When component initializing, i add all movies to Redux store. */

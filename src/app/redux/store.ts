@@ -1,11 +1,13 @@
 import { IMovie } from './imovie';
 import { ADD_MOVIE, REMOVE_MOVIE, REMOVE_ALL_MOVIES } from './actions';
 
+/* App State of Movie Redux */
 export interface IAppState {
     movies: IMovie[];
     lastUpdate: Date;
 }
 
+/* Initial state of Movie app */
 export const INITIAL_STATE: IAppState = {
     movies: [],
     lastUpdate: null
@@ -13,7 +15,7 @@ export const INITIAL_STATE: IAppState = {
 
 /* Redux store and reducer created by Tsoodol 02/04/2018 */ 
 export function rootReducer(state, action) {
-    // Reducer Logic
+    // Reducer Logic to add, remove movies.
     switch (action.type) {
         case ADD_MOVIE:
             action.movie.id = state.movies.length + 1;    
