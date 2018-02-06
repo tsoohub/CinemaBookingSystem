@@ -15,7 +15,7 @@ export class SignupServiceService implements OnDestroy {
 
   signupUser(user) {
 
-    this.subscribe = this.http.post('http://cinema-booking-demo.herokuapp.com/user', user, { headers: { 'Content-Type': 'application/json' } }).subscribe(
+    this.subscribe = this.http.post('https://cinema-booking-demo.herokuapp.com/user', user, { headers: { 'Content-Type': 'application/json' } }).subscribe(
       data => {
         this.saveData(data);
         this.router.navigate(['/movie']);
