@@ -13,6 +13,6 @@ export class TicketOrderService {
    ticket order information.
   */
   orderTicket(id,orderedTicket,loggedUser) {
-      return this.http.put('http://localhost:3000/order/' + id, {tickets:orderedTicket,user:loggedUser});
+      return this.http.put('https://cinema-booking-demo.herokuapp.com/order/' + id, {tickets:orderedTicket,user:loggedUser});
   }
 }

@@ -9,17 +9,17 @@ export class MovieServiceService {
   constructor(public http: HttpClient, private router: Router) { }
   
   getMovieById(id){
-    return this.http.get('http://localhost:3000/movie/'+id);
+    return this.http.get('https://cinema-booking-demo.herokuapp.com/movie/'+id);
   }
   getAllMovies() {
-    return this.http.get('http://localhost:3000/movie');
+    return this.http.get('https://cinema-booking-demo.herokuapp.com/movie');
   }
 
   insertMovie(movie) {
-    return this.http.post('http://localhost:3000/movie', movie);
+    return this.http.post('https://cinema-booking-demo.herokuapp.com/movie', movie);
   }
 
   deleteMovie(id) {
-    return this.http.delete('http://localhost:3000/movie/'+id);
+    return this.http.delete('https://cinema-booking-demo.herokuapp.com/movie/'+id);
   }
 }

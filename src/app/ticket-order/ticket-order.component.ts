@@ -66,8 +66,8 @@ export class TicketOrderComponent implements OnInit {
 
     this.ticketOrderForm = fb.group({
       'time': ['', [Validators.required]],
-      'adultCount': ['', [Validators.required, Validators.min(0), Validators.max(40)]],
-      'childrenCount': ['', [Validators.required, Validators.min(0), Validators.max(40)]],
+      'adultCount': ['', [Validators.required, Validators.min(0), Validators.max(40)],Validators.pattern("[0-9]")],
+      'childrenCount': ['', [Validators.required, Validators.min(0), Validators.max(40)],Validators.pattern("[0-9]")],
     });
 
     this.ticketOrderForm.controls['adultCount'].valueChanges.subscribe(

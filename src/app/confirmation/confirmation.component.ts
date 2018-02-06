@@ -7,7 +7,7 @@ import { ConfirmationServiceService } from '../services/confirmation-service.ser
   styleUrls: ['./confirmation.component.css']
 })
 export class ConfirmationComponent implements OnInit {
-  private orderedTicket;
+  orderedTicket;
   constructor(private confirmService:ConfirmationServiceService) { }
 
   /* Molomjamts- 02/05/2018
