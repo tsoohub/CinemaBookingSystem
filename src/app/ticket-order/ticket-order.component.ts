@@ -33,6 +33,11 @@ export interface Schedule {
   startTime: String,
   totalSeat: any
 }
+
+/** Molomjamts - 02/04/2018
+ *  Ticket order form. User can order ticket by select movie time and puting the number of tickets
+ * for each type(adult and children) 
+ */
 @Component({
   selector: 'app-ticket-order',
   templateUrl: './ticket-order.component.html',
@@ -58,18 +63,24 @@ export class TicketOrderComponent implements OnInit {
       console.log('movieId in constructor:' + this.id);
       movieService.getMovieById(this.id).subscribe(res => {
         this.movie = JSON.parse(JSON.stringify(res));
+        this.curSchedule = this.movie.schedule[0];
         console.log('movieObject', this.movie);
         console.log('shceduleObject:');
       });
 
+      this.ticketOrderForm = fb.group({
+        'time': ['', [Validators.required]],
+        'adultCount': ['', Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])],
+        'childrenCount': ['', Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])],
+      });
+
     });
 
-    this.ticketOrderForm = fb.group({
-      'time': ['', [Validators.required]],
-      'adultCount': ['', [Validators.required, Validators.min(0), Validators.max(3), Validators.pattern('^[1-9]{1,3}$')]],
-      'childrenCount': ['', [Validators.required, Validators.min(0), Validators.max(3), Validators.pattern('^[1-9]{1,3}$')]],
-    });
 
+    /*Molomjamts - 02/06/2018
+     listening the form  input values of ticket 
+     counts to show available seat count real time
+    */
     this.ticketOrderForm.controls['adultCount'].valueChanges.subscribe(
       (data: any) => {
         console.log(data);
@@ -91,7 +102,7 @@ export class TicketOrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('calling ticketOrder');
+
   }
 
   /* Molomjamts --
@@ -105,38 +116,40 @@ export class TicketOrderComponent implements OnInit {
   onSubmit() {
     console.log('value:', this.ticketOrderForm.value);
     var loggedUser = JSON.parse(localStorage.getItem('user'));
-    // loggedUser.userTickets.push(this.ticketOrderForm.value);
     var orderedTickets = this.ticketOrderForm.value;
     orderedTickets.movieId = this.movie._id;
-    console.log('userLogged', loggedUser);
-    console.log('orderedTickets', orderedTickets);
-    this.order.orderTicket(this.id, orderedTickets, loggedUser).subscribe(res => {
-      console.log(res);
-      this.confrimService.pushData(orderedTickets);
-    });
-    this.router.navigateByUrl('/movie/ticketConfirmation');
-
+    console.log('userLogged', this.totalSeat);
+    console.log('orderedTickets', this.adultSeat + this.childrenSeat);
+    if (this.checkSeat()) {
+      this.order.orderTicket(this.id, orderedTickets, loggedUser).subscribe(res => {
+        console.log(res);
+        this.confrimService.pushData(orderedTickets);
+        this.router.navigateByUrl('/movie/ticketConfirmation');
+      });
+    }
   }
 
+  /* Molomjamts -02/06/2018 
+  when select time, it will update the available seat at the time */
   onChange(value) {
     this.curSchedule = this.movie.schedule.filter(x => x.startTime === this.ticketOrderForm.value.time)[0];
     this.totalSeat = this.curSchedule.totalSeat;
+    this.ticketOrderForm.controls['adultCount'].reset();
+    this.ticketOrderForm.controls['childrenCount'].reset();
+    this.adultSeat = 0;
+    this.childrenSeat = 0;
   }
 
-  checkAvaiableSeat(control: FormControl): { [s: string]: boolean } {
-    if (this.totalSeat > this.adultSeat + this.childrenSeat) {
-      return { result: true };
-    }
-    return null;
-  }
+  /* Molomjamts -02/06/2018 
+   It will check if the ordered seat is exceeded number of available seat 
+  */
+  checkSeat() {
+    if (parseInt(this.curSchedule.totalSeat) >= parseInt(this.adultSeat) + parseInt(this.childrenSeat)) {
+      return true;
+    } else {
+      console.log('total',parseInt(this.totalSeat) );
+      console.log('ddddddd',parseInt(this.adultSeat) + parseInt(this.childrenSeat));
+      return false; }
 
-  // checkAvaiableSeat(){
-  //   var orderedSeat = this.ticketOrderForm.value.adultCount+this.ticketOrderForm.value.childrenCount;
-  //   if(this.curSchedule.totalSeat>orderedSeat){
-  //     return true;
-  //   }
-  //   else{
-  //     return false;
-  //   }
-  // }
+  }
 }

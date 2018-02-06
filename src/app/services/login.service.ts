@@ -4,11 +4,12 @@ import { tokenNotExpired } from 'angular2-jwt';
 import { Observable } from 'rxjs'
 import { RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
+import { Globals } from '../globals';
 
 @Injectable()
 export class LoginService {
-
-  constructor(private http: HttpClient, private router: Router) {
+  
+  constructor(private http: HttpClient, private router: Router,private gl:Globals) {
 
   }
   /* Molomjamts -02/03/2018 
@@ -16,7 +17,7 @@ export class LoginService {
   if login is successful, it will call the saveData function, 
   otherwise, will navigate to login page*/
   login(credentials) {
-    this.http.post('https://cinema-booking-demo.herokuapp.com/login', credentials, { headers: { 'Content-Type': 'application/json' } }).subscribe(
+    this.http.post(this.gl.URL+'/login', credentials, { headers: { 'Content-Type': 'application/json' } }).subscribe(
       data => {
         this.saveData(data);
         console.log('dddd',data);

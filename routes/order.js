@@ -4,6 +4,11 @@ var User = require('../models/User.js');
 var Movie = require('../models/Movie');
 var jwt = require('jsonwebtoken');
 
+/* Molomjamts - 02/05/2018
+    it will push the new record to user's ticket list.
+    and lookup the movie that user ordered and reducig number of avaiable seat
+    by number of user's ordered ticket 
+*/
 router.put('/:id', (req, res, next) => {
     User.findOneAndUpdate({ _id: req.body._id, }, { $push: { "userTickets": req.body.tickets } }, { "new": true }, function (err, user) {
 

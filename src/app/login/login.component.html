@@ -7,7 +7,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
           <div class="col-md-12 contact-left">
             <input type="text" [formControl]="loginForm.controls['username']" name="username" placeholder="username" required="">
-            <input type="text" placeholder="password" [formControl]="loginForm.controls['password']" name="password" required="">
+            <input type="password" placeholder="password" [formControl]="loginForm.controls['password']" name="password" required="">
             <input type="submit" [disabled]="!loginForm.valid" value="Login">
           </div>
 

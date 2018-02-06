@@ -17,7 +17,7 @@ body a{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
-input[type="button"],input[type="submit"]{
+input[type="button"],input[type="submit"],input[type="password"]{
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
 	-moz-transition:0.5s all;
@@ -1892,7 +1892,7 @@ font-weight: 700;
 	.contact-form {
 		margin-top: 2em;
 	}
-	.main-contact form input[type="text"], .main-contact form textarea {
+	.main-contact form input[type="text"], input[type="password"], .main-contact form textarea {
 		padding: 8px 12px;
 		border: 2px solid #000;
 		font-size: 1.1em;

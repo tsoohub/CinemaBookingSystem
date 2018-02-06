@@ -73,12 +73,14 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
     /* Add seats to time */
     movie.schedule = movie.schedule.map(function (value, label) {return {'startTime': value, 'totalSeat': 50};});
     /* Add movie to MongoDB */ 
-    this.subscription = this.movieService.insertMovie(movie).subscribe(res => {});
-    /* Add movie to Redux Store */
-    this.ngRedux.dispatch({type: ADD_MOVIE, movie: movie});
+    this.subscription = this.movieService.insertMovie(movie).subscribe(res => {
+      /* Add movie to Redux Store */
+      this.ngRedux.dispatch({type: ADD_MOVIE, movie: res});
+    });
     
   }
   removeMovie(movie) {
+    console.log("delete movie", movie);
     let id = movie._id;
     /* Here, i removing movie from Redux store and mongoDB */
     this.ngRedux.dispatch({type: REMOVE_MOVIE, id: movie.id });
