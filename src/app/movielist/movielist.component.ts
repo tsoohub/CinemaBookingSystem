@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class MovielistComponent implements OnInit, OnDestroy {
 
+  /* Movie List crud created by Tsoodol 02/06/2018 */ 
   constructor(private http: MovieServiceService) { }
 
   movies: any;

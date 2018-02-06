@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
+  /* Signup CRUD in mongoDB, created by Tsoodol 02/04/2018 */ 
   constructor(private fb: FormBuilder, private http: SignupServiceService, private router: Router) {
     this.signupForm = fb.group({
       'firstname': ['', [Validators.required]],

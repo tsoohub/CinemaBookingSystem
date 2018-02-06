@@ -11,6 +11,7 @@ export const INITIAL_STATE: IAppState = {
     lastUpdate: null
 }
 
+/* Redux store and reducer created by Tsoodol 02/04/2018 */ 
 export function rootReducer(state, action) {
     // Reducer Logic
     switch (action.type) {

@@ -29,6 +29,7 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   movietimes: Array<String> = ["12:00", "15:00", "17:00", "21:00"];
 
+  /* Movie crud in mongoDB created by Tsoodol 02/06/2018 */ 
   constructor(private fb: FormBuilder, private ngRedux: NgRedux<IAppState>, private movieService: MovieServiceService) { 
     this.movieForm = fb.group({
       'name': ['', [Validators.required]],
@@ -48,15 +49,18 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-      /* When component initializing, i add all movies to Redux store. */
-      this.subscription = this.movieService.getAllMovies().subscribe(movie => {
-        for(let i in movie) {
-          this.ngRedux.dispatch({type: ADD_MOVIE, movie: movie[i]});
-        }
-      });
+      if(this.ngRedux.getState().movies.length ==0) {
+        /* When component initializing, i add all movies to Redux store. */
+        this.subscription = this.movieService.getAllMovies().subscribe(movie => {
+          for(let i in movie) {
+            this.ngRedux.dispatch({type: ADD_MOVIE, movie: movie[i]});
+          }
+        });
+      }
   }
 
   ngOnDestroy() {
+    if(this.subscription!==undefined)
     this.subscription.unsubscribe();
   }
 

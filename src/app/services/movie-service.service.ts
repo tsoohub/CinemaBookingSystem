@@ -5,24 +5,21 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class MovieServiceService {
-
+  /* Movie Service to CRUD in MongoDB created by Tsoodol 02/06/2018 */
   constructor(public http: HttpClient, private router: Router) { }
-  url:String ="http://localhost:3000";
-
+  
   getMovieById(id){
-    return this.http.get(this.url+'/movie/'+id);
+    return this.http.get('https://cinema-booking-demo.herokuapp.com/movie/'+id);
   }
   getAllMovies() {
-    return this.http.get(this.url+'/movie');
+    return this.http.get('https://cinema-booking-demo.herokuapp.com/movie');
   }
 
   insertMovie(movie) {
-    console.log(movie);
-    // return this.http.post('https://cinema-booking-demo.herokuapp.com/movie', movie);
-    return this.http.post(this.url+'/movie', movie);
+    return this.http.post('https://cinema-booking-demo.herokuapp.com/movie', movie);
   }
 
   deleteMovie(id) {
-    return this.http.delete(this.url+'/movie/'+id);
+    return this.http.delete('https://cinema-booking-demo.herokuapp.com/movie/'+id);
   }
 }
