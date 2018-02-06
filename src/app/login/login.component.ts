@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.loginService.login(val);
     if (this.loginService.loggedIn) {
-      this.router.navigateByUrl('/movie');
+     
     }
 
   }

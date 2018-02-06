@@ -14,7 +14,9 @@ var jwt = require('express-jwt');
 var app = express();
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/cinema', { promiseLibrary: require('bluebird') })
+// mongoose.connect('mongodb://localhost/cinema', { promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://mwa:mwa@ds125578.mlab.com:25578/cinema', { promiseLibrary: require('bluebird') })
+
   .then(() => console.log('connection succesful'))
   .catch((err) => console.error(err));
 
