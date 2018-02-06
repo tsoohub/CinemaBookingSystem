@@ -1,0 +1,7 @@
+{
+    "name": "Cinema Booking System",
+    "description": "This is cinema booking system",
+    "repository": "https://github.com/tsoohub/CinemaBookingSystem",
+    "keywords": ["node", "express", "static"],
+    "image": "heroku/nodejs"
+}

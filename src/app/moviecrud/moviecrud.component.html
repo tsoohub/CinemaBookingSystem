@@ -21,20 +21,21 @@
       </select>
     </div>
     <div class="col-auto">
-        <input type="text" 
-          class="form-control form-one" 
-          placeholder="Adult price"
-          [formControl]="movieForm.controls['adult']">
-        <input type="text" 
-          class="form-control form-one" 
-          placeholder="Child price"
-          [formControl]="movieForm.controls['child']">
-        <input type="text" 
-          class="form-control form-one" 
-          placeholder="Image url"
-          [formControl]="movieForm.controls['img']">
-      </div>
-      <div class="clear"></div>
+      <input type="text" 
+        class="form-control form-one" 
+        placeholder="Adult price"
+        [formControl]="movieForm.controls['adult']">
+      <input type="text" 
+        class="form-control form-one" 
+        placeholder="Child price"
+        [formControl]="movieForm.controls['child']">
+      <input type="text" 
+        class="form-control form-one" 
+        placeholder="Image url"
+        [formControl]="movieForm.controls['img']">
+    </div>
+    
+    <div class="clear"></div>
     <div class="col-auto">
       <button type="submit" class="btn btn-primary">Create</button>
     </div>
