@@ -5,6 +5,8 @@ import { LoginService } from '../services/login.service';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+/* Molomjamts - 02/03/2018
+creating loginForm with loginControls (username and password) */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +28,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  /* Molomjamts - 02/03/2018
+  when submit button clicked, this function will be called.
+  it will take username and password from the login form and 
+  calls the login service with credentials. 
+   */
   onSubmit() {
     const val = this.loginForm.value;
     console.log(this.loginForm.value);

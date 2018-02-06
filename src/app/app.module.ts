@@ -11,7 +11,7 @@ import { myRoutes } from './app.routes';
 import { LoginService } from './services/login.service';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthGuard } from './guard/auth.guard';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignupServiceService } from './services/signup-service.service';
 import { SignupComponent } from './signup/signup.component';
 import { MovielistComponent } from './movielist/movielist.component';
@@ -22,6 +22,9 @@ import { TicketOrderService } from './services/ticket-order.service';
 import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
 import { MovieoverviewComponent } from './movieoverview/movieoverview.component';
 import { MoviecrudComponent } from './moviecrud/moviecrud.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ConfirmationServiceService } from './services/confirmation-service.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { MoviecrudComponent } from './moviecrud/moviecrud.component';
     SignupComponent,
     MovielistComponent,
     MovieoverviewComponent,
-    MoviecrudComponent
+    MoviecrudComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,11 +47,17 @@ import { MoviecrudComponent } from './moviecrud/moviecrud.component';
     NgReduxModule,
     myRoutes
   ],
-  providers: [SignupServiceService, LoginService, AuthHttp, AuthGuard, MovieServiceService, TicketOrderService],
+  providers: [SignupServiceService, LoginService, AuthHttp, AuthGuard,
+    MovieServiceService, TicketOrderService, ConfirmationServiceService,
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: TokenInterceptorService, 
+      multi: true 
+  } ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  constructor (ngRedux: NgRedux<IAppState>) {
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
     ngRedux.configureStore(rootReducer, INITIAL_STATE);
   }
 }

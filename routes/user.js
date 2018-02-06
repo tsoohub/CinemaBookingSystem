@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-
+    console.log('ddddd');
     User.create(req.body, function (err, post) {
         if (err) return next(err);
 
