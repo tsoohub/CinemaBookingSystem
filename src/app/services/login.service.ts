@@ -19,9 +19,9 @@ export class LoginService {
     this.http.post('http://localhost:3000/login', credentials, { headers: { 'Content-Type': 'application/json' } }).subscribe(
       data => {
         this.saveData(data);
-        console.log(data);
-      }
-      ,
+        console.log('dddd',data);
+        this.router.navigateByUrl('/movie');
+      },
       error => {
         console.log(" error: " + error);
         this.router.navigateByUrl('/login');
