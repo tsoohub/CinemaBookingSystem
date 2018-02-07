@@ -131,7 +131,7 @@ export class TicketOrderComponent implements OnInit {
 
   /* Molomjamts -02/06/2018 
   when select time, it will update the available seat at the time */
-  onChange(value) {
+  onChange() {
     this.curSchedule = this.movie.schedule.filter(x => x.startTime === this.ticketOrderForm.value.time)[0];
     this.totalSeat = this.curSchedule.totalSeat;
     this.ticketOrderForm.controls['adultCount'].reset();
