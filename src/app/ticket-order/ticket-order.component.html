@@ -8,24 +8,25 @@
 
         <form [formGroup]="ticketOrderForm" (ngSubmit)="onSubmit()">
           <div class="col-md-12  contact-left">
-
+          
+            <p *ngIf="!checkSeat()">number of seat is invalid!</p>
             <div></div>
             <label for="adultCount">Start Time</label>
              <span  *ngIf="!ticketOrderForm.controls['time'].valid">Invalid time</span> <br>
-            <select type="text" [formControl]="ticketOrderForm.controls['time']" (change)="onChange($event)">
-              <option *ngFor="let time of movie.schedule" [ngValue]="time.startTime">
+            <select type="text" [formControl]="ticketOrderForm.controls['time']" (change)="onChange()">
+              <option *ngFor="let time of movie.schedule; let i=index" [ngValue]="time.startTime" [selected]="i==0">
                 {{time.startTime}}
             </option>
             </select>
              <h2 *ngIf="curSchedule">Number of Available seat {{totalSeat}}</h2> 
             <br> <br>
             <label for="adultCount">Ticket count (Adult)</label>
-            <span  *ngIf="!ticketOrderForm.controls['time'].valid">Invalid Number</span>
+            <span  *ngIf="!ticketOrderForm.controls['adultCount'].valid">Invalid Number</span>
             <input type="text" placeholder="0" [formControl]="ticketOrderForm.controls['adultCount']">
             
 
-             <label for="adultCount">Ticket count (Children)</label>
-            <span  *ngIf="!ticketOrderForm.controls['time'].valid">Invalid Number</span>
+             <label for="childrenCount">Ticket count (Children)</label>
+            <span  *ngIf="!ticketOrderForm.controls['childrenCount'].valid">Invalid Number</span>
             <input type="text" placeholder="0" [formControl]="ticketOrderForm.controls['childrenCount']">
 
 

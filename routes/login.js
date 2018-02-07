@@ -4,6 +4,11 @@ var User = require('../models/User.js');
 var jwt = require('jsonwebtoken');
 
 
+/**Molomjamts -02/05/2018
+ * It will authenticate user.
+ *  if the credential is valid, token will be generated and sent.
+ * 
+ */
 router.post('/', (req, res, next) => {
     console.log('comingRq:'+req.body.username);
     console.log(req.headers);
