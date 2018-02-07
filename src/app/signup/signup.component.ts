@@ -18,6 +18,10 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
+  /* Tsoodol 02/03/2018
+     This component is responsible for registering new user.
+     This will validate user information first send to the Node Application
+  */ 
   constructor(private fb: FormBuilder, private http: SignupServiceService, private router: Router) {
     this.signupForm = fb.group({
       'firstname': ['', [Validators.required]],

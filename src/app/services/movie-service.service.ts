@@ -7,6 +7,9 @@ import { Globals } from '../globals';
 @Injectable()
 export class MovieServiceService {
 
+  /* created by Tsoodol 02/06/2018 
+     Movie Service to CRUD in MongoDB
+     Send request to movie url to Node JS */
   constructor(public http: HttpClient, private router: Router,private gl:Globals) { }
 
 
@@ -24,6 +27,7 @@ export class MovieServiceService {
   }
 
   deleteMovie(id) {
+    console.log("service id",id);
     return this.http.delete(this.gl.URL+'/movie/'+id);
   }
 }

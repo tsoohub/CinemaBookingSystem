@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnauthorizedComponent implements OnInit {
 
+  /* Unauthorized page, created by Tsoodol 02/04/2018 */ 
   constructor() { }
 
   ngOnInit() {

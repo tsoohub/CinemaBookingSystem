@@ -1,3 +1,6 @@
+/* Tsoodol 02/03/2018
+   User collections with all property and type*/
+
 var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({

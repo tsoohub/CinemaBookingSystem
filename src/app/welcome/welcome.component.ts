@@ -8,6 +8,7 @@ import { LoginService } from '../services/login.service';
 })
 export class WelcomeComponent implements OnInit {
 
+  /* Welcome page created by Tsoodol 02/02/2018 */ 
   constructor(private auth: LoginService) { }
 
   ngOnInit() {
