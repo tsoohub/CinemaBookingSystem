@@ -124,8 +124,8 @@ export class TicketOrderComponent implements OnInit {
       this.order.orderTicket(this.id, orderedTickets, loggedUser).subscribe(res => {
         console.log(res);
         this.confrimService.pushData(orderedTickets);
-        this.router.navigateByUrl('/movie/ticketConfirmation');
       });
+      this.router.navigateByUrl('/movie/ticketConfirmation');
     }
   }
 
