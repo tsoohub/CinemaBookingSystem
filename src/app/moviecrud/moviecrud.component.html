@@ -37,7 +37,7 @@
     
     <div formArrayName="schedule">
       <h6>Movie times: <button type="button" class="btn btn-primary" (click)="onAddTime()">Add time</button></h6>
-      <div class="col-auto" *ngFor="let time of movieForm.get('schedule').controls; let i = index">
+      <div class="col-auto" *ngFor="let time of formSchedule.controls; let i = index">
         <select class="form-control" formControlName="{{i}}">
 
           <option *ngFor="let ti of movietimes" value="{{ti}}">{{ti}}</option>

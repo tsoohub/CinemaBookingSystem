@@ -46,6 +46,8 @@ export class MoviecrudComponent implements OnInit, OnDestroy {
     });
   }
 
+  get formSchedule() { return <FormArray>this.movieForm.get('schedule'); }
+
   /* Add new time control to current movie */
   onAddTime() {
     (<FormArray>this.movieForm.controls['schedule']).push(new FormControl('', Validators.required));
